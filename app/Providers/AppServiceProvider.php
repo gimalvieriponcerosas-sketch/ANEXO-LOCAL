@@ -20,8 +20,16 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        if ($this->app->environment('local')) {
-            URL::forceRootUrl(config('app.url'));
+        $appUrl = config('app.url');
+
+        if (is_string($appUrl) && filter_var($appUrl, FILTER_VALIDATE_URL)) {
+            URL::forceRootUrl($appUrl);
+
+            $scheme = parse_url($appUrl, PHP_URL_SCHEME);
+
+            if (is_string($scheme)) {
+                URL::forceScheme($scheme);
+            }
         }
     }
 }
