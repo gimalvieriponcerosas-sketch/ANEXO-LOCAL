@@ -4,34 +4,38 @@
 @section('page-title', 'Dashboard')
 
 @section('content')
-    <section class="card-panel mb-6">
-        <p class="text-xs font-semibold uppercase tracking-[0.3em] text-cyan-700">Cabecera institucional fija</p>
-        <h3 class="mt-3 font-display text-2xl font-bold text-slate-900">{{ config('anexo.title') }}</h3>
-        <div class="mt-6 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+    <section class="relative mb-6 overflow-hidden rounded-2xl bg-slate-950 p-6 text-white shadow-lg shadow-slate-900/10 sm:p-8">
+        <div class="absolute -right-12 -top-20 size-64 rounded-full border border-teal-300/10"></div>
+        <div class="absolute -right-2 -top-10 size-44 rounded-full border border-teal-300/10"></div>
+        <div class="relative">
+            <p class="text-xs font-semibold uppercase tracking-[0.2em] text-teal-300">Cabecera institucional</p>
+            <h3 class="mt-2 max-w-3xl font-display text-2xl font-bold tracking-tight text-white sm:text-3xl">{{ config('anexo.title') }}</h3>
+        </div>
+        <div class="relative mt-7 grid gap-x-8 gap-y-5 border-t border-white/10 pt-6 sm:grid-cols-2 xl:grid-cols-3">
             <div>
-                <p class="detail-label">{{ config('anexo.entregable_labels.empresa_supervisora') }}</p>
-                <p class="detail-value">{{ $configuracion['empresa'] }}</p>
+                <p class="text-[11px] font-semibold uppercase tracking-wider text-slate-400">{{ config('anexo.entregable_labels.empresa_supervisora') }}</p>
+                <p class="mt-1.5 text-sm font-medium leading-6 text-slate-100">{{ $configuracion['empresa'] }}</p>
             </div>
             <div>
-                <p class="detail-label">{{ config('anexo.entregable_labels.ruc') }}</p>
-                <p class="detail-value">{{ $configuracion['ruc'] }}</p>
+                <p class="text-[11px] font-semibold uppercase tracking-wider text-slate-400">{{ config('anexo.entregable_labels.ruc') }}</p>
+                <p class="mt-1.5 text-sm font-medium leading-6 text-slate-100">{{ $configuracion['ruc'] }}</p>
             </div>
             <div>
-                <p class="detail-label">{{ config('anexo.entregable_labels.numero_contrato') }}</p>
-                <p class="detail-value">{{ $configuracion['contrato'] }}</p>
+                <p class="text-[11px] font-semibold uppercase tracking-wider text-slate-400">{{ config('anexo.entregable_labels.numero_contrato') }}</p>
+                <p class="mt-1.5 text-sm font-medium leading-6 text-slate-100">{{ $configuracion['contrato'] }}</p>
             </div>
             <div>
-                <p class="detail-label">DIVISION</p>
-                <p class="detail-value">{{ $configuracion['division'] ?: 'Sin dato' }}</p>
+                <p class="text-[11px] font-semibold uppercase tracking-wider text-slate-400">División</p>
+                <p class="mt-1.5 text-sm font-medium leading-6 text-slate-100">{{ $configuracion['division'] ?: 'Sin dato' }}</p>
             </div>
-            <div class="md:col-span-2 xl:col-span-3">
-                <p class="detail-label">{{ config('anexo.entregable_labels.nombre_servicio') }}</p>
-                <p class="detail-value">{{ $configuracion['nombre_servicio_contratado'] }}</p>
+            <div class="sm:col-span-2 xl:col-span-2">
+                <p class="text-[11px] font-semibold uppercase tracking-wider text-slate-400">{{ config('anexo.entregable_labels.nombre_servicio') }}</p>
+                <p class="mt-1.5 text-sm font-medium leading-6 text-slate-100">{{ $configuracion['nombre_servicio_contratado'] }}</p>
             </div>
         </div>
     </section>
 
-    <div class="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+    <div class="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
         <div class="stat-card">
             <p class="stat-label">Total de anexos</p>
             <p class="stat-value">{{ $metricas['total_anexos'] }}</p>
@@ -70,7 +74,8 @@
         </div>
     </div>
 
-    <section class="card-panel mt-6">
+    <section class="mt-6 flex flex-col gap-3 rounded-2xl border border-slate-200/80 bg-white p-4 shadow-sm sm:flex-row sm:flex-wrap sm:items-center sm:p-5">
+        <p class="mr-auto text-sm font-semibold text-slate-700">Acciones rápidas</p>
         <div class="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
             <a href="{{ route('registros.create') }}" class="btn-primary">Nuevo registro</a>
             <a href="{{ route('registros.exportar.hoy') }}" class="btn-secondary">Exportar registros de hoy</a>
